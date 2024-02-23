@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish_Moving : MonoBehaviour
+public class fish_moving_WASD_uprightdownleft : MonoBehaviour
 {
     private float _speed = 50f;
     public GameObject Fish;
@@ -103,7 +103,11 @@ public class Fish_Moving : MonoBehaviour
             {
 
                 _current_key = _key_to_press_array[_array_index];
-                if (Input.GetKeyDown(KeyCode.LeftArrow) && _current_key == 0 ||
+                if (Input.GetKeyDown(KeyCode.A) && _current_key == 0 ||
+                    Input.GetKeyDown(KeyCode.W) && _current_key == 1 ||
+                    Input.GetKeyDown(KeyCode.D) && _current_key == 2 ||
+                    Input.GetKeyDown(KeyCode.S) && _current_key == 3 ||
+                    Input.GetKeyDown(KeyCode.LeftArrow) && _current_key == 0 ||
                     Input.GetKeyDown(KeyCode.UpArrow) && _current_key == 1 ||
                     Input.GetKeyDown(KeyCode.RightArrow) && _current_key == 2 ||
                     Input.GetKeyDown(KeyCode.DownArrow) && _current_key == 3)
