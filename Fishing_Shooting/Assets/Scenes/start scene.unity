@@ -586,8 +586,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 688903366}
-  - component: {fileID: 688903365}
   - component: {fileID: 688903367}
+  - component: {fileID: 688903368}
   m_Layer: 0
   m_Name: music controller
   m_TagString: Untagged
@@ -595,20 +595,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &688903365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688903364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 922eabac10690354c8c7d6f6993c36d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMusic: {fileID: 8300000, guid: b9204106b182939439cdd80435ac3480, type: 3}
-  secondMusic: {fileID: 8300000, guid: 6892f1b51c0125a4aac638d24a980a88, type: 3}
 --- !u!4 &688903366
 Transform:
   m_ObjectHideFlags: 0
@@ -720,6 +706,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &688903368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688903364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0228afb6c920534ebe99e6409bb4372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialMusic: {fileID: 8300000, guid: b9204106b182939439cdd80435ac3480, type: 3}
+  secondMusic: {fileID: 8300000, guid: 6892f1b51c0125a4aac638d24a980a88, type: 3}
 --- !u!1 &1087296693
 GameObject:
   m_ObjectHideFlags: 0

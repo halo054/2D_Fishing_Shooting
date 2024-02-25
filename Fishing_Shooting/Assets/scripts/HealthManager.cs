@@ -33,10 +33,7 @@ public class HealthManager : MonoBehaviour
         {
             fishHealth = fish.GetComponent<Health>(); // 更新 fishHealth 引用
         }
-        else
-        {
-            Debug.LogError("Fish GameObject not found in the scene!");
-        }
+        
     }
 
     private void HandleHealthZero()

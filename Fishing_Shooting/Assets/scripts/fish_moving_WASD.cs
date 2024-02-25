@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fish_moving_WASD_uprightdownleft : MonoBehaviour
+public class fish_moving_WASD : MonoBehaviour
 {
     private float _speed = 50f;
     public GameObject Fish;
     public bool _fish_on_flag;
+    public bool _set_hook_flag;
     private float _fish_check_time = 0.0f;
+    private float _current_fish_check_time = 0.0f;
     private int[] _key_to_press_array;
     private int _current_key;
     private int _array_index = -1;
@@ -16,18 +18,23 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
     public Sprite[] fishSpritesArray2; // Array to hold the second set of fish sprites
     private SpriteRenderer[] _fishRenderers; // Array to hold the sprite renderers of the fish
     public float spriteScale = 0.05f; // Variable to adjust sprite size
-
+    public GameObject Restart_Button;
 
     // Start is called before the first frame update
     void Start()
     {
         _fish_on_flag = false;
-        _fish_check_time = Time.time + Random.Range(2f, 3f);
+        _fish_check_time = 2 + Time.time + Random.Range(2f, 3f);
         _fishRenderers = new SpriteRenderer[6]; // Initialize array to hold sprite renderers
         for (int i = 0; i < 6; i++)
         {
             _fishRenderers[i] = fishObjects[i].GetComponent<SpriteRenderer>();
         }
+    }
+
+    void OnJointBreak2D()
+    {
+        Restart_Button.SetActive(true);
     }
 
     // Update is called once per frame
@@ -48,35 +55,49 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
                 }
             }
 
-            if (Time.time > _fish_check_time && _fish_on_flag == false)
-            {
-                _fish_check_time = _fish_check_time + Random.Range(2f, 3f);
+            if (Time.time > _fish_check_time && _fish_on_flag == false){
+                _current_fish_check_time = _fish_check_time;
+                _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
                 if (Random.Range(-1f, 1f) >= 0)
                 {
-                    //gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * _speed * 5);
                     Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 5);
                     _fish_on_flag = true;
-                    _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
                 }
 
             }
 
-            if (_fish_on_flag == true && Time.time > _fish_check_time)
+            if( Time.time <= _current_fish_check_time+0.5f && Input.GetKeyDown(KeyCode.Space)){
+                _set_hook_flag = true;
+            }
+            else if(Time.time > _current_fish_check_time + 0.5f && _set_hook_flag == false){
+                _fish_on_flag = false;
+            }
+
+
+        if (_set_hook_flag == true)
+        {
+            
+            Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 0.002f);
+            if ( Time.time > _fish_check_time)
             {
                 _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
-                Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 5);
+                Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 3);
                 _speed++;
                 //Debug.Log(_speed);
             }
 
+        }
+
+        
+
             //to delay the escape of fish
-            if (Input.GetKeyDown(KeyCode.Space) && _fish_on_flag == true)
+            if (Input.GetKeyDown(KeyCode.Space) && _set_hook_flag == true)
             {
                 _speed -= 0.08f;
             }
 
             //generate keys in _key_to_press_array
-            if (_fish_on_flag == true && _array_index == -1)
+            if (_set_hook_flag == true && _array_index == -1)
             {
                 int i;
                 int a;
@@ -99,7 +120,7 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
 
 
             //when the right arrow is pressed, point to the next key(when not reach to end) or decrease speed and reset the arrow list
-            if (_fish_on_flag == true && _array_index >= 0)
+            if (_set_hook_flag == true && _array_index >= 0)
             {
 
                 _current_key = _key_to_press_array[_array_index];

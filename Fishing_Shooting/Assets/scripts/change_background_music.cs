@@ -9,7 +9,7 @@ public class change_background_music : MonoBehaviour
     public AudioClip secondMusic;
 
     private AudioSource audioSource;
-    private bool _fish_on_flag;
+    private bool _set_hook_flag;
 
     void Awake()
     {
@@ -39,16 +39,16 @@ public class change_background_music : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "2.24 Yuan's version")
         {
-            // 获取另一个物体上的 FishController 脚本，并获取其中的 _fish_on_flag 变量
-            fish_moving_WASD_uprightdownleft  fishController = FindObjectOfType<fish_moving_WASD_uprightdownleft >();
+            // 获取另一个物体上的 FishController 脚本，并获取其中的 _set_hook_flag 变量
+            fish_moving_WASD fishController = FindObjectOfType<fish_moving_WASD >();
             if (fishController != null)
             {
-                _fish_on_flag = fishController._fish_on_flag;
-                // 每帧检查 _fish_on_flag 的值，根据其值选择要播放的音乐
-                
+                _set_hook_flag = fishController._set_hook_flag;
+                // 每帧检查 _set_hook_flag 的值，根据其值选择要播放的音乐
+
             }
-           
-            if (_fish_on_flag)
+
+            if (_set_hook_flag)
             {
                 if (audioSource.clip != secondMusic)
                 {

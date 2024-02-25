@@ -13,6 +13,9 @@ public class LaserGunShoot : MonoBehaviour
     // 发射激光的速度
     public float laserSpeed = 10f;
 
+    public bool isshoot = false;
+    
+
     void Update()
     {
         // 检测鼠标点击
@@ -23,10 +26,20 @@ public class LaserGunShoot : MonoBehaviour
             {
                 // 发射激光
                 FireLaser();
+                
+                // 开启协程，等待两秒后将 isshoot 设置为 false
+                StartCoroutine(ResetIsShoot());
             }
         }
     }
+    IEnumerator ResetIsShoot()
+    {
+        // 等待两秒
+        yield return new WaitForSeconds(2f);
 
+        // 将 isshoot 设置为 false
+        isshoot = false;
+    }
     void FireLaser()
     {
         // 实例化激光预制件
@@ -37,6 +50,8 @@ public class LaserGunShoot : MonoBehaviour
 
         // 设置激光的速度
         rb.velocity = gunTransform.right * laserSpeed;
+
+        isshoot = true;
 
         // 销毁激光预制件，防止占用过多内存
         Destroy(laser, 2f); // 2秒后销毁，可以根据实际需要调整时间
