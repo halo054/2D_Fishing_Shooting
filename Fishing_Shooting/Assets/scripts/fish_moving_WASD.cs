@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fish_moving_WASD_uprightdownleft : MonoBehaviour
+public class fish_moving_WASD : MonoBehaviour
 {
     private float _speed = 50f;
     public GameObject Fish;
     public bool _fish_on_flag;
     public bool _set_hook_flag;
     private float _fish_check_time = 0.0f;
-    private float _last_fish_check_time = 0.0f;
+    private float _current_fish_check_time = 0.0f;
     private int[] _key_to_press_array;
     private int _current_key;
     private int _array_index = -1;
@@ -18,15 +18,13 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
     public Sprite[] fishSpritesArray2; // Array to hold the second set of fish sprites
     private SpriteRenderer[] _fishRenderers; // Array to hold the sprite renderers of the fish
     public float spriteScale = 0.05f; // Variable to adjust sprite size
-    public GameObject restart_button;
+    public GameObject Restart_Button;
 
     // Start is called before the first frame update
     void Start()
     {
         _fish_on_flag = false;
-        _set_hook_flag = false;
         _fish_check_time = 2 + Time.time + Random.Range(2f, 3f);
-        _last_fish_check_time = 0f;
         _fishRenderers = new SpriteRenderer[6]; // Initialize array to hold sprite renderers
         for (int i = 0; i < 6; i++)
         {
@@ -36,7 +34,7 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
 
     void OnJointBreak2D()
     {
-        restart_button.SetActive(true);
+        Restart_Button.SetActive(true);
     }
 
     // Update is called once per frame
@@ -49,7 +47,6 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
                     fishObject.SetActive(false);
                 }
             }
-
             else
             {
                 foreach (GameObject fishObject in fishObjects)
@@ -58,57 +55,40 @@ public class fish_moving_WASD_uprightdownleft : MonoBehaviour
                 }
             }
 
-            if (Time.time > _fish_check_time && _set_hook_flag == false){
-
-                _last_fish_check_time = _fish_check_time;
-                _fish_check_time = _fish_check_time + Random.Range(2f, 3f);
-                if (Random.Range(-1f, 1f) >= 0){
-                    //gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * _speed * 5);
+            if (Time.time > _fish_check_time && _fish_on_flag == false){
+                _current_fish_check_time = _fish_check_time;
+                _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
+                if (Random.Range(-1f, 1f) >= 0)
+                {
                     Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 5);
                     _fish_on_flag = true;
                 }
+
             }
 
-            if (_fish_on_flag == true){
-                if(Input.GetKeyDown(KeyCode.Space) && Time.time <= _last_fish_check_time + 1)
-                {
+            if( Time.time <= _current_fish_check_time+0.5f && Input.GetKeyDown(KeyCode.Space)){
                 _set_hook_flag = true;
-                Debug.Log("1");
+            }
+            else if(Time.time > _current_fish_check_time + 0.5f && _set_hook_flag == false){
+                _fish_on_flag = false;
             }
 
-                //if not set hook, let fish escape
-                else if(Time.time > _last_fish_check_time + 1)
-                {
-                _fish_on_flag = false;
 
-                }
-        }
-            
-
-
-
-        //let fish constantly moving, and sprint occasionally
         if (_set_hook_flag == true)
         {
+            
             Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 0.002f);
-
-            if (Time.time > _fish_check_time)
-            {
-                _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
-                Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 3);
-                _speed++;
-                Debug.Log(_speed);
-
-            }
-        }
-
-            if (_set_hook_flag == true && Time.time > _fish_check_time)
+            if ( Time.time > _fish_check_time)
             {
                 _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
                 Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 3);
                 _speed++;
                 //Debug.Log(_speed);
             }
+
+        }
+
+        
 
             //to delay the escape of fish
             if (Input.GetKeyDown(KeyCode.Space) && _set_hook_flag == true)

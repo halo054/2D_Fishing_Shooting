@@ -7,7 +7,6 @@ public class choose_level_scene_manager : MonoBehaviour
 {
     public void choosing_level(string sceneName)
     {
-        Debug.Log("Accessed");
         SceneManager.LoadScene(sceneName);
     }
 }

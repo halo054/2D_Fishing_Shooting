@@ -14,6 +14,8 @@ public class bullet_time : MonoBehaviour
     private bool isCooldown = false; // 是否处于减速冷却状态
     private float slowdownTimer = 0f; // 减速计时器
     private float cooldownTimer = 0f; // 冷却计时器
+    public GameObject gun;
+    private LaserGunShoot shoot;
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class bullet_time : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded; // 注册场景加载事件
         if (transform.position.y > maxHeight && !isSlowdown && !isCooldown) // 如果物体高度超过设定的高度且不在减速状态且不在冷却状态
         {
-            Time.timeScale = 0.3f; // 减速时间流速为原来的1/10
+            Time.timeScale = 0.1f; // 减速时间流速为原来的1/10
             isSlowdown = true; // 进入减速状态
             slowdownTimer = slowdownCooldown; // 设置减速计时
         }
@@ -56,6 +58,16 @@ public class bullet_time : MonoBehaviour
                 isCooldown = false; // 结束冷却状态
             }
         }
+        if (gun != null)
+        {
+            shoot = gun.GetComponent<LaserGunShoot>(); // 更新 fishHealth 引用
+        }
+
+        if (shoot.isshoot == true)
+        {
+            isSlowdown = false; // 结束减速状态
+            Time.timeScale = 1f; // 恢复时间流速
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -71,4 +83,6 @@ public class bullet_time : MonoBehaviour
         // 取消事件注册，以防止内存泄漏
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    
 }
