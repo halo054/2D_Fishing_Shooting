@@ -11,20 +11,36 @@ public class Health : MonoBehaviour
     private bool isInvincible = false;
     public float invincibilityDuration = 0.5f;
     public string damageSourceTag = "laser";
+    
+    // 触发器Collider2D
+        public Collider2D triggerCollider;
+    
+        // 普通Collider2D
+        public Collider2D normalCollider;
 
     private void Start()
     {
+        // 初始化时，关闭Collider2D
+        normalCollider.enabled = false;
+        
         currentHealth = maxHealth;
         UpdateHealthBar();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
+        normalCollider.enabled = false;
         if (other.CompareTag(damageSourceTag) && !isInvincible)
         {
             Debug.Log("hit");
             TakeDamage(1);
             StartCoroutine(InvincibilityFrame());
+        }
+
+        if (other.CompareTag(damageSourceTag) == false)
+        {
+            normalCollider.enabled = true;
         }
     }
 
