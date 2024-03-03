@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class LaserGunShoot : MonoBehaviour
 {
@@ -14,10 +16,19 @@ public class LaserGunShoot : MonoBehaviour
     public float laserSpeed = 10f;
 
     public bool isshoot = false;
-    
+    public TextMeshProUGUI textComponent_bullet; // 在Unity编辑器中将Canvas上的Text组件拖拽到这个变量中
 
     void Update()
     {
+        if (CanFireLaser() == true)
+        {
+            // 更新Text组件的文本内容为你的变量的值
+            textComponent_bullet.text = "Bullet: 1/1";
+        }
+        else
+        {
+            textComponent_bullet.text = "Bullet: 0/1";
+        }
         // 检测鼠标点击
         if (Input.GetMouseButtonDown(0))
         {

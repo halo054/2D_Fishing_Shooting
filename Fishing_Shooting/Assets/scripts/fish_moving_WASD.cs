@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fish_moving_WASD : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class fish_moving_WASD : MonoBehaviour
     private SpriteRenderer[] _fishRenderers; // Array to hold the sprite renderers of the fish
     public float spriteScale = 0.05f; // Variable to adjust sprite size
     public GameObject Restart_Button;
+    public TextMeshProUGUI textComponent; // 在Unity编辑器中将Canvas上的Text组件拖拽到这个变量中
+    
+   
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +81,8 @@ public class fish_moving_WASD : MonoBehaviour
 
         if (_set_hook_flag == true)
         {
-            
+            // 更新Text组件的文本内容为你的变量的值
+            textComponent.text = "Speed: " + _speed.ToString("F2");
             Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 0.05f);
             if ( Time.time > _fish_check_time)
             {
