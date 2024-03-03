@@ -77,11 +77,11 @@ public class fish_moving_WASD : MonoBehaviour
         if (_set_hook_flag == true)
         {
             
-            Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 0.002f);
+            Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 0.05f);
             if ( Time.time > _fish_check_time)
             {
                 _fish_check_time = _fish_check_time + Random.Range(0.5f, 3f);
-                Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 3);
+                Fish.GetComponent<Rigidbody2D>().AddForce((-Vector3.up + Vector3.right) * _speed * 10);
                 _speed++;
                 //Debug.Log(_speed);
             }
@@ -162,6 +162,9 @@ public class fish_moving_WASD : MonoBehaviour
                     }
                 }
             }
+
+
+
     }
 
     void UpdateFishSprites(Sprite[] spritesArray)
@@ -183,4 +186,20 @@ public class fish_moving_WASD : MonoBehaviour
             _fishRenderers[_array_index].sprite = fishSpritesArray2[keyIndex]; // Update the sprite
         }
     }
+
+
+    // Water floating force and resistance
+    void OnTriggerEnter2D(Collider2D collision)
+    {   
+        if (collision.gameObject.CompareTag("water"))
+        {
+            //edit here to control floating force
+            Fish.GetComponent<Rigidbody2D>().AddForce((Vector3.up) * 0.001f);
+
+            //edit here to control resistance
+            Fish.GetComponent<Rigidbody2D>().velocity = 0.95f * Fish.GetComponent<Rigidbody2D>().velocity;
+            Debug.Log("1");
+        }
+    }
+
 }

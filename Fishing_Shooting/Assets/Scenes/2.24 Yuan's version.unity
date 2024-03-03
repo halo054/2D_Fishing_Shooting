@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 234167895}
   - component: {fileID: 234167894}
   - component: {fileID: 234167896}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (3)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -1214,7 +1214,7 @@ GameObject:
   - component: {fileID: 281663893}
   - component: {fileID: 281663892}
   - component: {fileID: 281663894}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (8)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -1929,13 +1929,13 @@ HingeJoint2D:
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -4.6658688, y: -0.16135883}
-  m_UseMotor: 0
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 1000000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 0
+    m_LowerAngle: -50
     m_UpperAngle: 0
 --- !u!4 &355801273
 Transform:
@@ -2916,7 +2916,7 @@ GameObject:
   - component: {fileID: 604014164}
   - component: {fileID: 604014163}
   - component: {fileID: 604014165}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (4)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -4470,6 +4470,7 @@ GameObject:
   - component: {fileID: 1149835251}
   - component: {fileID: 1149835249}
   - component: {fileID: 1149835250}
+  - component: {fileID: 1149835252}
   m_Layer: 0
   m_Name: bone_1
   m_TagString: Untagged
@@ -4544,6 +4545,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1964991499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1149835252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149835248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed85f53d44691b24c8b7e0950982128e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anchor: {fileID: 355801270}
 --- !u!1 &1173281141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,7 +4569,7 @@ GameObject:
   - component: {fileID: 1173281143}
   - component: {fileID: 1173281142}
   - component: {fileID: 1173281144}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (6)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -5691,7 +5705,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.05
+  m_fontSize: 33.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6568,7 +6582,7 @@ GameObject:
   - component: {fileID: 1818925347}
   - component: {fileID: 1818925346}
   - component: {fileID: 1818925348}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (2)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -7195,7 +7209,7 @@ GameObject:
   - component: {fileID: 1947277158}
   - component: {fileID: 1947277157}
   - component: {fileID: 1947277159}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (1)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -7595,7 +7609,7 @@ GameObject:
   - component: {fileID: 2009663113}
   - component: {fileID: 2009663112}
   - component: {fileID: 2009663114}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -7883,7 +7897,7 @@ GameObject:
   - component: {fileID: 2048555209}
   - component: {fileID: 2048555208}
   - component: {fileID: 2048555210}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (7)
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -8013,7 +8027,7 @@ GameObject:
   - component: {fileID: 2061229533}
   - component: {fileID: 2061229532}
   - component: {fileID: 2061229534}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: water_img (5)
   m_TagString: water
   m_Icon: {fileID: 0}
