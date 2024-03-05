@@ -8,17 +8,31 @@ public class Controlling_Rod : MonoBehaviour
     private HingeJoint2D hinge2D;
     private JointMotor2D updated_motor;
     private float motorspeed = 0f;
+    private Vector2 _force;
+
+    //the counter used to control the interval between two joint force check.
+    private float _next_check = 0.5f;
+
 
     void Start()
     {
         hinge2D = Anchor.GetComponent<HingeJoint2D>();
         updated_motor = hinge2D.motor;
-
+        _next_check = 1f;
 
     }
     // Update is called once per frame
     void Update()
     {
+        _force = hinge2D.GetReactionForce(0.5f);
+        
+        if (Time.time >= _next_check)
+        {
+            Debug.Log("Current force:" + _force.magnitude);
+            _next_check += 1f;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             //edit here to edit motor speed increasement
