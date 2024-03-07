@@ -5,13 +5,16 @@ public class Health : MonoBehaviour
 {
     public delegate void HealthChangedDelegate(float healthPercent);
     public event HealthChangedDelegate OnHealthChanged;
+    private HealthManager scene_manager;
 
     public int maxHealth = 3;
     public int currentHealth;
     private bool isInvincible = false;
     public float invincibilityDuration = 0.5f;
     public string damageSourceTag = "laser";
-    
+    public GameObject manager;
+
+    public string catchTag = "catch detector";
     // 触发器Collider2D
         public Collider2D triggerCollider;
     
@@ -25,6 +28,7 @@ public class Health : MonoBehaviour
         
         currentHealth = maxHealth;
         UpdateHealthBar();
+        manager = GameObject.FindGameObjectWithTag(catchTag);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,7 +41,12 @@ public class Health : MonoBehaviour
             TakeDamage(1);
             StartCoroutine(InvincibilityFrame());
         }
-
+        if (other.CompareTag(catchTag) && !isInvincible)
+        {
+            scene_manager = manager.GetComponent<HealthManager>(); // 更新 fishHealth 引用
+            currentHealth = 0;
+            scene_manager.Win = true;
+        }
         if (other.CompareTag(damageSourceTag) == false)
         {
             normalCollider.enabled = true;

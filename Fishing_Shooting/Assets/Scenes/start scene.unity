@@ -720,6 +720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMusic: {fileID: 8300000, guid: b9204106b182939439cdd80435ac3480, type: 3}
   secondMusic: {fileID: 8300000, guid: 6892f1b51c0125a4aac638d24a980a88, type: 3}
+  audioSource: {fileID: 0}
+  _set_hook_flag: 0
 --- !u!1 &977080004
 GameObject:
   m_ObjectHideFlags: 0
