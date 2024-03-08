@@ -126,6 +126,7 @@ public class fish_moving_WASD : MonoBehaviour
 
 
             //when the right arrow is pressed, point to the next key(when not reach to end) or decrease speed and reset the arrow list
+            
             if (_set_hook_flag == true && _array_index >= 0)
             {
 
@@ -169,9 +170,14 @@ public class fish_moving_WASD : MonoBehaviour
                 }
             }
 
-
+        //fish get controlled by rod
+        if (_set_hook_flag == true && Controlling_Rod.force.magnitude >= 10f)
+        {
+            _speed -= 0.005f;
+        }
 
     }
+
 
     void UpdateFishSprites(Sprite[] spritesArray)
     {

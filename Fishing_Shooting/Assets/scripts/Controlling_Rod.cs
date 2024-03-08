@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Controlling_Rod : MonoBehaviour
 {
+
     public GameObject Anchor;
     private HingeJoint2D hinge2D;
     private JointMotor2D updated_motor;
     private float motorspeed = 0f;
-    private Vector2 _force;
+    public static Vector2 force;//force on rod
+
 
     //the counter used to control the interval between two joint force check.
     private float _next_check = 0.5f;
@@ -24,11 +27,11 @@ public class Controlling_Rod : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _force = hinge2D.GetReactionForce(0.5f);
+        force = hinge2D.GetReactionForce(0.5f);
         
         if (Time.time >= _next_check)
         {
-            Debug.Log("Current force:" + _force.magnitude);
+            Debug.Log("Current force:" + force.magnitude);
             _next_check += 1f;
         }
 
@@ -53,5 +56,11 @@ public class Controlling_Rod : MonoBehaviour
             Debug.Log("current force:" + updated_motor.motorSpeed);
 
         }
+
+
+
+
+
+
     }
 }
