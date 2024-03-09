@@ -2561,7 +2561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.75
+  m_fontSize: 14.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3001,6 +3001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fish: {fileID: 562569059}
+  Anchor: {fileID: 355801270}
   _fish_on_flag: 0
   _set_hook_flag: 0
   fishObjects:
@@ -3023,6 +3024,8 @@ MonoBehaviour:
   spriteScale: 0.05
   Restart_Button: {fileID: 1960170158}
   textComponent: {fileID: 612225734}
+  joint: {fileID: 562569060}
+  Hinge: {fileID: 0}
 --- !u!70 &562569069
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3475,7 +3478,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.4
+  m_fontSize: 20.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6078,7 +6081,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.25
+  m_fontSize: 32
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

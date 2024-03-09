@@ -8,6 +8,7 @@ public class fish_moving_WASD : MonoBehaviour
 {
     private float _speed = 50f;
     public GameObject Fish;
+    public GameObject Anchor;
     public bool _fish_on_flag;
     public bool _set_hook_flag;
     private float _fish_check_time = 0.0f;
@@ -22,12 +23,18 @@ public class fish_moving_WASD : MonoBehaviour
     public float spriteScale = 0.05f; // Variable to adjust sprite size
     public GameObject Restart_Button;
     public TextMeshProUGUI textComponent; // 在Unity编辑器中将Canvas上的Text组件拖拽到这个变量中
-    
-   
+    public FixedJoint2D joint;
+    public HingeJoint2D Hinge;
+
+
+    private float _press_space_timer;
+    private int _press_space_counter;
+    private bool _press_space_flag;
 
     // Start is called before the first frame update
     void Start()
     {
+        Hinge = Anchor.GetComponent<HingeJoint2D>();
         _fish_on_flag = false;
         _fish_check_time = 2 + Time.time + Random.Range(2f, 3f);
         _fishRenderers = new SpriteRenderer[6]; // Initialize array to hold sprite renderers
@@ -37,10 +44,7 @@ public class fish_moving_WASD : MonoBehaviour
         }
     }
 
-    void OnJointBreak2D()
-    {
-        Restart_Button.SetActive(true);
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -96,84 +100,53 @@ public class fish_moving_WASD : MonoBehaviour
 
         
 
-            //to delay the escape of fish
-            if (Input.GetKeyDown(KeyCode.Space) && _set_hook_flag == true)
-            {
-                _speed -= 0.08f;
+         // Press F to decide to pull fish
+         if (Input.GetKeyDown(KeyCode.F) && _set_hook_flag == true && _speed <= 20f)
+         {
+         _press_space_timer = Time.time + 2f;
+         _press_space_counter = 8;
+         _press_space_flag = true;
+         
+         }
+
+        if ( _press_space_flag == true && Time.time < _press_space_timer)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                _press_space_counter--;
+                Debug.Log(_press_space_counter);
             }
-
-            //generate keys in _key_to_press_array
-            if (_set_hook_flag == true && _array_index == -1)
+            if (_press_space_counter == 0)
             {
-                int i;
-                int a;
-                _key_to_press_array = new int[6];
-                // 0 represent left; 1 for up; 2 for right; 3 for down
-                for (i = 0; i <= 5; i++)
-                {
-                    a = Random.Range(0, 4);
-                    _key_to_press_array[i] = a;
-                    UpdateFishSprites(fishSpritesArray1); // Initialize fish sprites with the first array
-                }
-
-
-                //ToDo: Translate 0,1,2,3 into arrows in UI
-
-                Debug.Log(_key_to_press_array[0] + " " + _key_to_press_array[1] + " " + _key_to_press_array[2] + " "
-                          + _key_to_press_array[3] + " " + _key_to_press_array[4] + " " + _key_to_press_array[5] + " ");
-                _array_index = 0;
+                //add force to pull fish
+                Fish.GetComponent<Rigidbody2D>().AddForce((Vector3.up) * 1000);
+                _press_space_flag = false;
+                _speed = 70;
             }
+        }
+        // if fail to press space enough, add force back
+        if (_press_space_flag == true && Time.time > _press_space_timer)
+        {
+            _speed = 70;
+            _press_space_flag = false;
+        }
 
-
-            //when the right arrow is pressed, point to the next key(when not reach to end) or decrease speed and reset the arrow list
-            
-            if (_set_hook_flag == true && _array_index >= 0)
-            {
-
-                _current_key = _key_to_press_array[_array_index];
-                if (Input.GetKeyDown(KeyCode.A) && _current_key == 0 ||
-                    Input.GetKeyDown(KeyCode.W) && _current_key == 1 ||
-                    Input.GetKeyDown(KeyCode.D) && _current_key == 2 ||
-                    Input.GetKeyDown(KeyCode.S) && _current_key == 3 ||
-                    Input.GetKeyDown(KeyCode.LeftArrow) && _current_key == 0 ||
-                    Input.GetKeyDown(KeyCode.UpArrow) && _current_key == 1 ||
-                    Input.GetKeyDown(KeyCode.RightArrow) && _current_key == 2 ||
-                    Input.GetKeyDown(KeyCode.DownArrow) && _current_key == 3)
-                {
-                    UpdateSpriteArray();
-                    if (_array_index == 5)
-                    {
-                        if (_speed <= 10)
-                        {
-                            Fish.GetComponent<Rigidbody2D>().AddForce((Vector3.up) * 1000);
-                            _array_index = -1;
-                            Debug.Log(_speed);
-                        }
-
-
-
-                        else
-                        {
-                            _array_index = -1;
-                            _speed -= 15;
-                            //_speed -= 10;
-                            Debug.Log(_speed);
-                        }
-
-                    }
-                    else
-                    {
-                        _array_index++;
-                        _current_key = _key_to_press_array[_array_index];
-                        Debug.Log("accessed");
-                    }
-                }
-            }
 
         //fish get controlled by rod
-        if (_set_hook_flag == true && Controlling_Rod.force.magnitude >= 10f)
+
+        
+        if (_set_hook_flag == true && Hinge.jointAngle <= -25f)
         {
             _speed -= 0.005f;
+            Debug.Log("Decrease speed");
+        }
+
+        //when rod experience big force, fish will escape
+        if (_set_hook_flag == true && Controlling_Rod.force.magnitude >= 15f)
+        {
+            Restart_Button.SetActive(true);
+            joint = Fish.GetComponent<FixedJoint2D>();
+            Destroy(joint);
+            Debug.Log("Joint Break accessed");
         }
 
     }
