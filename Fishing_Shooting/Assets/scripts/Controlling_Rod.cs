@@ -9,7 +9,7 @@ public class Controlling_Rod : MonoBehaviour
     public GameObject Anchor;
     private HingeJoint2D hinge2D;
     private JointMotor2D updated_motor;
-    private float motorspeed = 0f;
+    public float motorspeed = 0f;
     public static Vector2 force;//force on rod
 
 
@@ -36,20 +36,20 @@ public class Controlling_Rod : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             //edit here to edit motor speed increasement
-            motorspeed+=0.1f;
+            motorspeed+=0.01f;
             //motor speed is negated to make the motor spinning backward
             updated_motor.motorSpeed = -motorspeed;
             Anchor.GetComponent<HingeJoint2D>().motor = updated_motor;
             Debug.Log("current force:" + updated_motor.motorSpeed);
 
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             //edit here to edit motor speed increasement
-            motorspeed -= 0.1f;
+            motorspeed -= 0.01f;
             //motor speed is negated to make the motor spinning backward
             updated_motor.motorSpeed = -motorspeed;
             Anchor.GetComponent<HingeJoint2D>().motor = updated_motor;

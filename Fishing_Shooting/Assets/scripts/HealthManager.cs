@@ -23,12 +23,16 @@ public class HealthManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded; // 添加场景加载完成后的回调
+        
+        
+        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 重新查找场景中的鱼对象并更新引用
         fish = GameObject.FindGameObjectWithTag("Player");
+        
         if (fish != null)
         {
             fishHealth = fish.GetComponent<Health>(); // 更新 fishHealth 引用
@@ -61,5 +65,6 @@ public class HealthManager : MonoBehaviour
             // 如果是，触发健康值归零事件
             HandleHealthZero();
         }
+       
     }
 }

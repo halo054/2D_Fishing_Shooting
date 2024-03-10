@@ -1,56 +1,53 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class LaserGunShoot : MonoBehaviour
 {
-    // 激光枪的Transform组件
     public Transform gunTransform;
-
-    // 激光预制件
     public GameObject laserPrefab;
-
-    // 发射激光的速度
     public float laserSpeed = 10f;
-
+    public TextMeshProUGUI textComponent_bullet;
     public bool isshoot = false;
-    public TextMeshProUGUI textComponent_bullet; // 在Unity编辑器中将Canvas上的Text组件拖拽到这个变量中
+    private bool canShoot = true;
 
     void Update()
     {
-        if (CanFireLaser() == true)
+        // 更新弹药数量显示
+        UpdateBulletDisplay();
+
+        // 检测鼠标点击并且可以开枪
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            // 更新Text组件的文本内容为你的变量的值
-            textComponent_bullet.text = "Bullet: 1/1";
-        }
-        else
-        {
-            textComponent_bullet.text = "Bullet: 0/1";
-        }
-        // 检测鼠标点击
-        if (Input.GetMouseButtonDown(0))
-        {
-            // 检查是否能发射激光
-            if (CanFireLaser())
-            {
-                // 发射激光
-                FireLaser();
-                
-                // 开启协程，等待两秒后将 isshoot 设置为 false
-                StartCoroutine(ResetIsShoot());
-            }
+            // 发射激光
+            FireLaser();
+
+            // 设置开枪状态为不可开枪
+            canShoot = false;
+
+            // 开启协程，等待两秒后重新设置为可开枪状态
+            StartCoroutine(ResetCanShoot());
         }
     }
-    IEnumerator ResetIsShoot()
+
+    void UpdateBulletDisplay()
+    {
+        // 根据开枪状态更新文本显示
+        textComponent_bullet.text = canShoot ? "Bullet: 1/1" : "Bullet: 0/1";
+    }
+
+    IEnumerator ResetCanShoot()
     {
         // 等待两秒
         yield return new WaitForSeconds(2f);
-
         // 将 isshoot 设置为 false
         isshoot = false;
+
+        // 设置开枪状态为可开枪
+        canShoot = true;
     }
+
     void FireLaser()
     {
         // 实例化激光预制件
@@ -61,29 +58,10 @@ public class LaserGunShoot : MonoBehaviour
 
         // 设置激光的速度
         rb.velocity = gunTransform.right * laserSpeed;
-
+        
         isshoot = true;
 
         // 销毁激光预制件，防止占用过多内存
         Destroy(laser, 2f); // 2秒后销毁，可以根据实际需要调整时间
-    }
-
-    bool CanFireLaser()
-    {
-        // 获取场景中带有 "laser" 标签的物体数量
-        GameObject[] lasers = GameObject.FindGameObjectsWithTag("laser");
-        int activeLasersCount = 0;
-
-        // 统计激活的激光数量
-        foreach (GameObject laser in lasers)
-        {
-            if (laser.activeSelf)
-            {
-                activeLasersCount++;
-            }
-        }
-
-        // 如果激活的激光数量小于2，则允许发射新的激光
-        return activeLasersCount < 2;
     }
 }
