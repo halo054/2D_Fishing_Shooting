@@ -20,6 +20,7 @@ public class Controlling_Rod : MonoBehaviour
 
     void Start()
     {
+
         hinge2D = Anchor.GetComponent<HingeJoint2D>();
         updated_motor = hinge2D.motor;
         _next_check = 1f;
@@ -29,7 +30,7 @@ public class Controlling_Rod : MonoBehaviour
     void Update()
     {
         force = hinge2D.GetReactionForce(0.5f);
-        
+        fish_moving_WASD fishController = FindObjectOfType<fish_moving_WASD>();
         if (Time.time >= _next_check)
         {
             Debug.Log("Current force:" + force.magnitude);
@@ -37,7 +38,7 @@ public class Controlling_Rod : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && fishController._set_hook_flag == true)
         {
             //edit here to edit motor speed increasement
             motorspeed+=0.01f;
@@ -47,7 +48,7 @@ public class Controlling_Rod : MonoBehaviour
             Debug.Log("current force:" + updated_motor.motorSpeed);
 
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && fishController._set_hook_flag == true)
         {
             //edit here to edit motor speed increasement
             motorspeed -= 0.01f;

@@ -10,7 +10,7 @@ public class fish_moving_WASD : MonoBehaviour
     public GameObject Fish;
     public GameObject Anchor;
     public bool _fish_on_flag;
-    public bool _set_hook_flag;
+    public  bool _set_hook_flag;
     private float _fish_check_time = 0.0f;
     private float _current_fish_check_time = 0.0f;
     public GameObject Restart_Button;
@@ -55,18 +55,18 @@ public class fish_moving_WASD : MonoBehaviour
             {
                 if (_speed >= 60f)
                 {
-                    word_hint.text = "It's pulling too hard! The fishing line is going to break!";
+                    word_hint.text = "You feel like the fish is escaping! Control the fish!";
                 }
 
                 if (_speed < 60)
                 {
                     if (Hinge.jointAngle <= decrease_speed_condition && _speed > 5f)
                     {
-                        word_hint.text = "It's getting weaker!";
+                        word_hint.text = "You feel like the fish is losing strength!";
                     }
                     else
                     {
-                        word_hint.text = "It's struggling!";
+                        word_hint.text = "You feel like the fish is trying to escape!";
                     }
                 }
 
@@ -77,15 +77,15 @@ public class fish_moving_WASD : MonoBehaviour
 
                 if (Controlling_Rod.force.magnitude + 2f >= lose_condition)
                 {
-                    word_hint.text = "Too much force!";
+                    word_hint.text = "You feel like too much force is added to the line! Take it easy!";
                 }
             }
             else
             {
-                if (_fish_on_flag == true)
-                {
-                    word_hint.text = "The fish is hooked! (Press Space)";
-                }
+                //if (_fish_on_flag == true && _set_hook_flag == false)
+                //{
+                    word_hint.text = "Press SPACE to set the hook when fish is on.\nUse A and D to control the rod when hook is set.\nUse MOUSE to aim and shoot the fish.";
+               // }
 
             }
         }
