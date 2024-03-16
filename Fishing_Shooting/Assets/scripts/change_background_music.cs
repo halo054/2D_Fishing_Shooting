@@ -37,7 +37,7 @@ public class change_background_music : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "2.24 Yuan's version")
+        if (SceneManager.GetActiveScene().name != "start scene" && SceneManager.GetActiveScene().name != "choose_level")
         {
             // 获取另一个物体上的 FishController 脚本，并获取其中的 _set_hook_flag 变量
             fish_moving_WASD fishController = FindObjectOfType<fish_moving_WASD >();

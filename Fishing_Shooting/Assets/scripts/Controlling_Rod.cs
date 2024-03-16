@@ -13,6 +13,7 @@ public class Controlling_Rod : MonoBehaviour
     public static Vector2 force;//force on rod
 
 
+
     //the counter used to control the interval between two joint force check.
     private float _next_check = 0.5f;
 

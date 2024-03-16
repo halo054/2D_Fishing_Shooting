@@ -7,37 +7,49 @@ public class HealthManager : MonoBehaviour
     public GameObject fish; // 参考 fish 游戏对象
     public bool Win;
     private static HealthManager instance;
+    public string manager_name = "Health Manager easy";
 
     private void Start()
     {
         Win = false;
-        if (instance == null)
+
+        // 查找所有 HealthManager 对象
+        HealthManager[] healthManagers = FindObjectsOfType<HealthManager>();
+
+        // 计算场景中 "Health Manager easy" 对象的数量
+        int count = 0;
+        foreach (HealthManager manager in healthManagers)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return; // 如果实例已经存在，直接返回，不需要执行后续代码
+            if (manager.gameObject.name == manager_name)
+            {
+                count++;
+            }
         }
 
+        // 如果 "Health Manager easy" 对象数量超过两个，销毁当前实例
+        if (count > 2)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+       
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+        
+
         SceneManager.sceneLoaded += OnSceneLoaded; // 添加场景加载完成后的回调
-        
-        
-        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 重新查找场景中的鱼对象并更新引用
         fish = GameObject.FindGameObjectWithTag("Player");
-        
+
         if (fish != null)
         {
             fishHealth = fish.GetComponent<Health>(); // 更新 fishHealth 引用
         }
-        
     }
 
     private void HandleHealthZero()
@@ -65,6 +77,5 @@ public class HealthManager : MonoBehaviour
             // 如果是，触发健康值归零事件
             HandleHealthZero();
         }
-       
     }
 }

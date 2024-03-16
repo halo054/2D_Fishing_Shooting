@@ -382,7 +382,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 264965956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 46749081}
+        m_TargetAssemblyTypeName: choose_level_scene_manager, Assembly-CSharp
+        m_MethodName: choosing_level
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: easy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &264965956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,7 +989,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 577286100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 46749081}
+        m_TargetAssemblyTypeName: choose_level_scene_manager, Assembly-CSharp
+        m_MethodName: choosing_level
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: hard
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &577286100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,7 +1206,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 2.24 Yuan's version
+          m_StringArgument: normal
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &749490222
@@ -1234,6 +1258,7 @@ GameObject:
   - component: {fileID: 818531258}
   - component: {fileID: 818531260}
   - component: {fileID: 818531259}
+  - component: {fileID: 818531261}
   m_Layer: 5
   m_Name: task (2)
   m_TagString: Untagged
@@ -1298,6 +1323,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818531257}
   m_CullTransparentMesh: 1
+--- !u!114 &818531261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818531257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0056a08d41ba59408626f2c6cde23ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_name: hard
 --- !u!1 &922157732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7874999, y: 0.16589116}
   m_AnchorMax: {x: 0.9225, y: 0.30800003}
-  m_AnchoredPosition: {x: 1.5999756, y: -1.300003}
+  m_AnchoredPosition: {x: 1.5999756, y: -1.2999878}
   m_SizeDelta: {x: 52, y: -24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976804964
@@ -1447,7 +1485,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976804965}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 46749081}
+        m_TargetAssemblyTypeName: choose_level_scene_manager, Assembly-CSharp
+        m_MethodName: choosing_level
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: insane
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &976804965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2071,6 +2121,7 @@ GameObject:
   - component: {fileID: 1593341916}
   - component: {fileID: 1593341918}
   - component: {fileID: 1593341917}
+  - component: {fileID: 1593341919}
   m_Layer: 5
   m_Name: task
   m_TagString: Untagged
@@ -2135,6 +2186,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593341915}
   m_CullTransparentMesh: 1
+--- !u!114 &1593341919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593341915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0056a08d41ba59408626f2c6cde23ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_name: easy
 --- !u!1 &1618754539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,6 +2435,7 @@ GameObject:
   - component: {fileID: 1871026972}
   - component: {fileID: 1871026974}
   - component: {fileID: 1871026973}
+  - component: {fileID: 1871026975}
   m_Layer: 5
   m_Name: task (3)
   m_TagString: Untagged
@@ -2435,6 +2500,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871026971}
   m_CullTransparentMesh: 1
+--- !u!114 &1871026975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871026971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0056a08d41ba59408626f2c6cde23ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_name: insane
 --- !u!1 &1971211884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,6 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0056a08d41ba59408626f2c6cde23ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level_name: normal
 --- !u!1 &2143169903
 GameObject:
   m_ObjectHideFlags: 0

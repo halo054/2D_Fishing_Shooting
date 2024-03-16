@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Check_normal : MonoBehaviour
 {
+    public string level_name = "easy";
     void Update()
     {
         // 检测名为“health manager”的物体是否存在
-        GameObject healthManager = GameObject.Find("health manager");
+        GameObject healthManager = GameObject.Find("health manager " + level_name);
 
         if (healthManager != null)
         {
