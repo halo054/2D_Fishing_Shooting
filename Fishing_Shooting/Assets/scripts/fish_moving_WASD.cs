@@ -28,6 +28,7 @@ public class fish_moving_WASD : MonoBehaviour
     private float fishing_rod_damage = 0f;
     public float max_damage = 120f;
     public float fish_escaping_speed = 1f;
+    public TextMeshProUGUI instructions;
 
     private float _press_space_timer;
     private int _press_space_counter;
@@ -53,6 +54,7 @@ public class fish_moving_WASD : MonoBehaviour
         {
             if (_set_hook_flag == true)
             {
+                instructions.text = "";
                 if (_speed >= 60f)
                 {
                     word_hint.text = "You feel like the fish is escaping! Control the fish!";
@@ -77,14 +79,14 @@ public class fish_moving_WASD : MonoBehaviour
 
                 if (Controlling_Rod.force.magnitude + 2f >= lose_condition)
                 {
-                    word_hint.text = "You feel like too much force is added to the line! Take it easy!";
+                    word_hint.text = "Too much force! Take it easy!";
                 }
             }
             else
             {
                 //if (_fish_on_flag == true && _set_hook_flag == false)
                 //{
-                    word_hint.text = "Press SPACE to set the hook when fish is on.\nUse A and D to control the rod when hook is set.\nUse MOUSE to aim and shoot the fish.";
+                    instructions.text = "Press SPACE to set the hook when fish is on.\nUse A and D to control the rod when hook is set.\nUse MOUSE to aim and shoot the fish.";
                // }
 
             }

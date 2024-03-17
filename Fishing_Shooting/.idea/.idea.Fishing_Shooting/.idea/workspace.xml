@@ -6,18 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d2c3d08c-48da-4a26-9a6b-e1b337022804" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fishing_Shooting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fishing_Shooting/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/2.18 Yuan's version.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/2.18 Yuan's version.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/2.24 Yuan's version.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/2.24 Yuan's version.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/choose_level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/choose_level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Check_normal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/Check_normal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Controlling_Rod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/Controlling_Rod.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/HealthManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/HealthManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/change_background_music.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/change_background_music.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/easy.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/easy.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/hard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/hard.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/insane.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/insane.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/normal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/normal.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/scripts/fish_moving_WASD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/fish_moving_WASD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +109,7 @@
       <workItem from="1710066157429" duration="5000" />
       <workItem from="1710066350745" duration="128000" />
       <workItem from="1710591176113" duration="303000" />
+      <workItem from="1710636147791" duration="2262000" />
     </task>
     <servers />
   </component>

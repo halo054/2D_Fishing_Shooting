@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/insane.unity
     guid: 4bb899c97fce7594d8cebb7e882da682
+  - enabled: 1
+    path: Assets/Scenes/Instructions for easy level.unity
+    guid: 3f9e66ab5ed630d4987344dd0852e130
   m_configObjects: {}
